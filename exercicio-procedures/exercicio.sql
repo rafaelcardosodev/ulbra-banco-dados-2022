@@ -1,3 +1,4 @@
+create database store_procedures;
 use store_procedures;
 
 create table pessoa (
@@ -39,10 +40,9 @@ DROP PROCEDURE IF EXISTS count_sexo_pcd;
 DELIMITER $$
 CREATE PROCEDURE count_sexo_pcd()
 	BEGIN
-		SELECT * FROM
-			(SELECT count(id) as 'qtd homens' FROM view_sexo_masculino) qtd_homens
-        JOIN
-			(SELECT count(id) as 'qtd mulheres' FROM view_sexo_feminino) qtd_mulheres;
+		SELECT count(id) as 'qtd homens' FROM view_sexo_masculino
+        UNION
+		SELECT count(id) as 'qtd mulheres' FROM view_sexo_feminino;
 	END 
 $$
 

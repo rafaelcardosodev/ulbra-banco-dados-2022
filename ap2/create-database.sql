@@ -41,13 +41,13 @@ LOCK TABLES `autores` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `cliente`
+-- Table structure for table `clientes`
 --
 
-DROP TABLE IF EXISTS `cliente`;
+DROP TABLE IF EXISTS `clientes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `cliente` (
+CREATE TABLE `clientes` (
   `id` int NOT NULL AUTO_INCREMENT,
   `nome` varchar(45) DEFAULT NULL,
   `fone` varchar(45) DEFAULT NULL,
@@ -57,22 +57,22 @@ CREATE TABLE `cliente` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `cliente`
+-- Dumping data for table `clientes`
 --
 
-LOCK TABLES `cliente` WRITE;
-/*!40000 ALTER TABLE `cliente` DISABLE KEYS */;
-/*!40000 ALTER TABLE `cliente` ENABLE KEYS */;
+LOCK TABLES `clientes` WRITE;
+/*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
+/*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `editora`
+-- Table structure for table `editoras`
 --
 
-DROP TABLE IF EXISTS `editora`;
+DROP TABLE IF EXISTS `editoras`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `editora` (
+CREATE TABLE `editoras` (
   `id` int NOT NULL AUTO_INCREMENT,
   `nome` varchar(45) NOT NULL,
   `endereco` varchar(45) NOT NULL,
@@ -85,22 +85,22 @@ CREATE TABLE `editora` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `editora`
+-- Dumping data for table `editoras`
 --
 
-LOCK TABLES `editora` WRITE;
-/*!40000 ALTER TABLE `editora` DISABLE KEYS */;
-/*!40000 ALTER TABLE `editora` ENABLE KEYS */;
+LOCK TABLES `editoras` WRITE;
+/*!40000 ALTER TABLE `editoras` DISABLE KEYS */;
+/*!40000 ALTER TABLE `editoras` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `genero`
+-- Table structure for table `generos`
 --
 
-DROP TABLE IF EXISTS `genero`;
+DROP TABLE IF EXISTS `generos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `genero` (
+CREATE TABLE `generos` (
   `id` int NOT NULL AUTO_INCREMENT,
   `descricao` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -111,9 +111,9 @@ CREATE TABLE `genero` (
 -- Dumping data for table `genero`
 --
 
-LOCK TABLES `genero` WRITE;
-/*!40000 ALTER TABLE `genero` DISABLE KEYS */;
-/*!40000 ALTER TABLE `genero` ENABLE KEYS */;
+LOCK TABLES `generos` WRITE;
+/*!40000 ALTER TABLE `generos` DISABLE KEYS */;
+/*!40000 ALTER TABLE `generos` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -149,17 +149,17 @@ UNLOCK TABLES;
 -- Table structure for table `locacao`
 --
 
-DROP TABLE IF EXISTS `locacao`;
+DROP TABLE IF EXISTS `locacoes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `locacao` (
+CREATE TABLE `locacoes` (
   `id` int NOT NULL,
   `data_locacao` date NOT NULL,
   `data_devolucao` date NOT NULL,
   `livros_id` int NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `livros_locacao` (`livros_id`),
-  CONSTRAINT `livros_locacao` FOREIGN KEY (`livros_id`) REFERENCES `livros` (`id`)
+  KEY `livros_locacoes` (`livros_id`),
+  CONSTRAINT `livros_locacoes` FOREIGN KEY (`livros_id`) REFERENCES `livros` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -167,25 +167,25 @@ CREATE TABLE `locacao` (
 -- Dumping data for table `locacao`
 --
 
-LOCK TABLES `locacao` WRITE;
-/*!40000 ALTER TABLE `locacao` DISABLE KEYS */;
-/*!40000 ALTER TABLE `locacao` ENABLE KEYS */;
+LOCK TABLES `locacoes` WRITE;
+/*!40000 ALTER TABLE `locacoes` DISABLE KEYS */;
+/*!40000 ALTER TABLE `locacoes` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
 -- Table structure for table `locacao_cliente`
 --
 
-DROP TABLE IF EXISTS `locacao_cliente`;
+DROP TABLE IF EXISTS `locacoes_clientes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `locacao_cliente` (
+CREATE TABLE `locacoes_clientes` (
   `locacao_id` int NOT NULL,
   `cliente_id` int NOT NULL,
-  KEY `locacao_has_locacao_cliente` (`locacao_id`),
-  KEY `cliente_has_locacao_cliente` (`cliente_id`),
-  CONSTRAINT `cliente_has_locacao_cliente` FOREIGN KEY (`cliente_id`) REFERENCES `cliente` (`id`),
-  CONSTRAINT `locacao_has_locacao_cliente` FOREIGN KEY (`locacao_id`) REFERENCES `locacao` (`id`)
+  KEY `locacao_has_locacoes_clientes` (`locacao_id`),
+  KEY `cliente_has_locacoes_clientes` (`cliente_id`),
+  CONSTRAINT `cliente_has_locacoes_clientes` FOREIGN KEY (`cliente_id`) REFERENCES `clientes` (`id`),
+  CONSTRAINT `locacao_has_locacoes_clientes` FOREIGN KEY (`locacao_id`) REFERENCES `locacoes` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -193,9 +193,9 @@ CREATE TABLE `locacao_cliente` (
 -- Dumping data for table `locacao_cliente`
 --
 
-LOCK TABLES `locacao_cliente` WRITE;
-/*!40000 ALTER TABLE `locacao_cliente` DISABLE KEYS */;
-/*!40000 ALTER TABLE `locacao_cliente` ENABLE KEYS */;
+LOCK TABLES `locacoes_clientes` WRITE;
+/*!40000 ALTER TABLE `locacoes_clientes` DISABLE KEYS */;
+/*!40000 ALTER TABLE `locacoes_clientes` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

@@ -135,7 +135,7 @@ BEGIN
 END $$
 DELIMITER ;
 
-CALL update_clientes_pcd(2, "Rafael", "22213123", "igra sul");
+CALL update_clientes_pcd(3, "Luana", "1111", "bairro");
 
 SELECT * FROM vw_clientes;
 /*--------------------------------------*/
@@ -150,7 +150,7 @@ BEGIN
 END $$
 DELIMITER ;
 
-CALL delete_clientes_pcd(1);
+CALL delete_clientes_pcd(3);
 
 SELECT * FROM vw_clientes;
 /*--------------------------------------*/
@@ -177,6 +177,8 @@ BEGIN
 END $$
 DELIMITER ;
 
+SELECT * FROM vw_livros;
+
 DROP TRIGGER IF EXISTS update_counter_copias_after_delete_trg;
 DELIMITER $$
 CREATE TRIGGER update_after_insert_counter_copias AFTER DELETE ON locacoes
@@ -190,6 +192,10 @@ DELIMITER ;
  
 SELECT * FROM vw_livros;
 SELECT * FROM vw_locacoes;
+
+DELETE FROM locacoes WHERE id = 3;
+
+
 CALL insert_livros_pcd(0, "Harry Potter", 1, 1, 0);
 CALL insert_locacoes_pcd(0, '2002-10-22', '2003-10-22', 2);
 CALL insert_locacoes_pcd(0, '2002-10-22', '2003-10-22', 2);
